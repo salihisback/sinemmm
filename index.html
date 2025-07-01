@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>İyi Geceler</title>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+  <div class="sky">
+    <div class="stars"></div>
+    <div class="shooting-stars"></div>
+    <div class="snowflakes"></div>
+    <div class="moon-phase"></div>
+    <div class="skyline-name">Elif</div>
+
+    <h1>İyi Geceler, Aşkım 🌙</h1>
+    <p class="message">Bu gece tüm yıldızlar senin için parlıyor... 💫</p>
+
+    <button id="musicBtn">❤️ Müzik Durdur</button>
+    <button id="surpriseBtn">🎁 Sürpriz Mesaj</button>
+    <button id="letterBtn">📜 Gizli Mektup</button>
+
+    <div id="surpriseMsg" class="hidden"></div>
+    <div id="secretLetter" class="hidden">
+      <h2>Gizli Mektup</h2>
+      <p>Sevgili aşkım,<br><br>
+      Seninle her şey daha güzel. Her yıldız, her kar tanesi senin gülüşünü hatırlatıyor.<br>
+      Bu küçük site, sana olan sevgimin bir yansıması sadece...<br><br>
+      Sonsuza kadar seni seveceğim... 💖<br><br>
+      - Senin Aşığın</p>
+    </div>
+  </div>
+
+  <audio id="bgMusic" autoplay loop>
+    <source src="music.mp3" type="audio/mpeg">
+    Tarayıcınız ses öğesini desteklemiyor.
+  </audio>
+
+  <script>
+    const music = document.getElementById('bgMusic');
+    const musicBtn = document.getElementById('musicBtn');
+    const surpriseBtn = document.getElementById('surpriseBtn');
+    const surpriseMsg = document.getElementById('surpriseMsg');
+    const letterBtn = document.getElementById('letterBtn');
+    const secretLetter = document.getElementById('secretLetter');
+    let playing = true;
+
+    musicBtn.addEventListener('click', () => {
+      if (playing) {
+        music.pause();
+        musicBtn.textContent = '💔 Müziği Oynat';
+      } else {
+        music.play();
+        musicBtn.textContent = '❤️ Müzik Durdur';
+      }
+      playing = !playing;
+    });
+
+    function typeMessage(text, element, delay = 40) {
+      element.innerHTML = "";
+      let i = 0;
+      function typing() {
+        if (i < text.length) {
+          element.innerHTML += text.charAt(i);
+          i++;
+          setTimeout(typing, delay);
+        }
+      }
+      typing();
+    }
+
+    const messageText = "Sevgilim,
+Bu siteyi senin için yaptım.
+Her yıldızda seni düşündüm 🌠
+Seni çok seviyorum! ❤️";
+
+    surpriseBtn.addEventListener('click', () => {
+      if (surpriseMsg.classList.contains('hidden')) {
+        surpriseMsg.classList.remove('hidden');
+        typeMessage(messageText, surpriseMsg, 40);
+      } else {
+        surpriseMsg.classList.add('hidden');
+      }
+    });
+
+    letterBtn.addEventListener('click', () => {
+      secretLetter.classList.toggle('hidden');
+    });
+
+    const shootingContainer = document.querySelector('.shooting-stars');
+    function createShootingStar() {
+      const star = document.createElement('div');
+      star.classList.add('shooting-star');
+      star.style.top = `${Math.random() * 100}%`;
+      star.style.left = `${Math.random() * 100}%`;
+      shootingContainer.appendChild(star);
+      setTimeout(() => star.remove(), 3000);
+    }
+    setInterval(createShootingStar, 5000);
+
+    const snowContainer = document.querySelector('.snowflakes');
+    function createSnowflake() {
+      const flake = document.createElement('div');
+      flake.classList.add('snowflake');
+      flake.style.left = `${Math.random() * 100}%`;
+      flake.style.animationDuration = `${2 + Math.random() * 3}s`;
+      snowContainer.appendChild(flake);
+      setTimeout(() => flake.remove(), 6000);
+    }
+    setInterval(createSnowflake, 300);
+  </script>
+
+  <script>
+    document.body.addEventListener('click', function(e) {
+      const heart = document.createElement('div');
+      heart.className = 'heart';
+      heart.style.left = e.clientX + 'px';
+      heart.style.top = e.clientY + 'px';
+      document.body.appendChild(heart);
+      setTimeout(() => heart.remove(), 1000);
+    });
+  </script>
+</body>
+</html>

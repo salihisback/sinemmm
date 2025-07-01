@@ -1,0 +1,284 @@
+body, html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  font-family: 'Segoe UI', sans-serif;
+  background: #0d1b2a;
+  overflow: hidden;
+}
+
+.sky {
+  position: relative;
+  height: 100vh;
+  width: 100%;
+  background: linear-gradient(to bottom, #0d1b2a, #1b263b, #415a77);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  color: white;
+  text-align: center;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.moon {
+  width: 100px;
+  height: 100px;
+  background: #fefcd7;
+  border-radius: 50%;
+  box-shadow: 0 0 30px 10px #fefcd7;
+  margin-bottom: 30px;
+  animation: moonGlow 4s ease-in-out infinite alternate;
+}
+
+@keyframes moonGlow {
+  from {
+    box-shadow: 0 0 20px 5px #fefcd7;
+  }
+  to {
+    box-shadow: 0 0 40px 15px #fefcd7;
+  }
+}
+
+h1 {
+  font-size: 3rem;
+  animation: fadeIn 2s ease-in;
+}
+
+.message {
+  font-size: 1.2rem;
+  margin-top: 10px;
+  max-width: 500px;
+  animation: fadeIn 3s ease-in;
+}
+
+button {
+  margin-top: 20px;
+  padding: 10px 20px;
+  font-size: 1rem;
+  border: none;
+  background: #fefcd7;
+  color: #0d1b2a;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+button:hover {
+  background: #e0dcba;
+}
+
+.hidden {
+  display: none;
+}
+
+#surpriseMsg {
+  margin-top: 15px;
+  padding: 15px;
+  background-color: rgba(255, 255, 255, 0.1);
+  border: 1px solid #fff;
+  border-radius: 10px;
+  max-width: 400px;
+  font-size: 1.1rem;
+  animation: fadeIn 1s ease-in;
+}
+
+.stars::before {
+  content: '';
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  background: linear-gradient(45deg, #ff8a8a, #ffd28a, #a8ff8a, #8afff7, #8a96ff, #e28aff);
+  box-shadow:
+    50px 80px white,
+    150px 120px white,
+    300px 60px white,
+    400px 200px white,
+    500px 100px white,
+    600px 150px white,
+    700px 250px white,
+    800px 50px white,
+    900px 180px white,
+    100px 300px white,
+    200px 400px white,
+    250px 100px white,
+    400px 50px white,
+    500px 250px white,
+    750px 90px white;
+  animation: twinkle 2s infinite ease-in-out alternate;
+}
+
+@keyframes twinkle {
+  from { opacity: 0.3; }
+  to { opacity: 1; }
+}
+
+.shooting-stars {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  z-index: 0;
+}
+
+.shooting-star {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  background: linear-gradient(45deg, #ff8a8a, #ffd28a, #a8ff8a, #8afff7, #8a96ff, #e28aff);
+  box-shadow: 0 0 6px white;
+  animation: shoot 1.5s linear forwards;
+  transform: rotate(45deg);
+}
+
+@keyframes shoot {
+  0% {
+    opacity: 0;
+    transform: translate(0, 0) rotate(45deg);
+  }
+  10% {
+    opacity: 1;
+  }
+  100% {
+    transform: translate(400px, 200px) rotate(45deg);
+    opacity: 0;
+  }
+}
+
+@media (max-width: 600px) {
+  h1 {
+    font-size: 2rem;
+  }
+  .moon {
+    width: 70px;
+    height: 70px;
+  }
+  .message {
+    font-size: 1rem;
+  }
+  button {
+    font-size: 0.9rem;
+    padding: 8px 16px;
+  }
+}
+
+
+.snowflakes {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 0;
+}
+.snowflake {
+  position: absolute;
+  top: 0;
+  width: 10px;
+  height: 10px;
+  background: white;
+  border-radius: 50%;
+  opacity: 0.8;
+  animation: fall linear;
+}
+
+@keyframes fall {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(100vh); }
+}
+
+.moon-phase {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 30% 30%, #fefcd7, #fefcd700 70%);
+  box-shadow: 0 0 20px #fefcd7;
+  margin-bottom: 20px;
+  animation: moonCycle 10s infinite alternate;
+}
+
+@keyframes moonCycle {
+  0% {
+    background: radial-gradient(circle at 0% 30%, #fefcd7, #fefcd700 60%);
+  }
+  50% {
+    background: radial-gradient(circle at 50% 30%, #fefcd7, #fefcd700 60%);
+  }
+  100% {
+    background: radial-gradient(circle at 100% 30%, #fefcd7, #fefcd700 60%);
+  }
+}
+
+#secretLetter {
+  background-color: rgba(255,255,255,0.1);
+  border: 1px solid white;
+  padding: 20px;
+  border-radius: 10px;
+  margin-top: 20px;
+  max-width: 500px;
+  animation: fadeIn 1s ease-in;
+  color: white;
+}
+
+
+.heart {
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  animation: heart-pop 1s ease-out forwards;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  z-index: 1000;
+}
+.heart::before,
+.heart::after {
+  content: "";
+  position: absolute;
+  width: 10px;
+  height: 16px;
+  background: red;
+  border-radius: 10px 10px 0 0;
+}
+.heart::before {
+  left: 10px;
+  transform: rotate(-45deg);
+  transform-origin: 0 100%;
+}
+.heart::after {
+  left: 0;
+  transform: rotate(45deg);
+  transform-origin: 100% 100%;
+}
+
+@keyframes heart-pop {
+  0% {
+    transform: scale(0.5) translate(-50%, -50%);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(2.0) translate(-50%, -50%);
+    opacity: 0;
+  }
+}
+
+
+.skyline-name {
+  position: absolute;
+  top: 10%;
+  white-space: nowrap;
+  font-size: 2em;
+  font-weight: bold;
+  color: rgba(255,255,255,0.8);
+  animation: scrollName 20s linear infinite;
+  z-index: 2;
+}
+
+@keyframes scrollName {
+  0% { left: 100%; }
+  100% { left: -100%; }
+}
